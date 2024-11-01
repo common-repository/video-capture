@@ -1,0 +1,433 @@
+@import "../../libs/css/video-js";
+
+.mfp-close-btn-in .mfp-close {
+	color: #FFF !important;
+	width: 33px;
+	height: 33px;
+	line-height: 33px;
+	background: rgba(0, 0, 0, 0.5) !important;
+	left: 100%;
+	top: auto;
+	bottom: calc(100% - 33px);
+	margin: 0 !important;
+}
+
+.wp-video-recorder {
+	&_left {
+		text-align: left;
+	}
+	&_right {
+		text-align: right;
+	}
+	&_center {
+		text-align: center;
+	}
+}
+
+$video__width: 640px;
+$video__width_flash: 420px;
+$height_vidrack-video: 480px;
+$height_recorder-controls: 70px;
+$height_copyright: 32px;
+$color__primary: #D10000;
+$color__text_button: #222222;
+$color__disabled: #BBB;
+#vidrack-popup,
+#vidrack-popup_flash {
+	display: block;
+	width: 100%;
+	margin: 0 auto;
+	background: #111;
+	padding: 5px;
+	position: relative;
+}
+#vidrack-popup {
+	max-width: $video__width + 5px;
+}
+#vidrack-popup_flash {
+	max-width: $video__width_flash + 5px;
+
+	object {
+		margin: 0;
+		display: block;
+	}
+}
+.vidrack {
+	margin-bottom: 2.5em;
+	#vidrack-popup & {
+		margin-bottom: 0;
+	}
+
+	&_hide {
+		display: none;
+	}
+
+	&__button,
+	&__button_flash,
+	&__button_ios {
+		background: $color__primary;
+		border-radius: 3px;
+		color: #FFFFFF !important;
+		display: inline-block;
+		line-height: 1;
+		font-size: 16px;
+		text-decoration: none;
+		font-weight: 500;
+		padding: 10px 20px;
+		margin-bottom: 1em;
+		-webkit-transition: .3s !important;
+				transition: .3s !important;
+		-webkit-box-shadow: none !important;
+				box-shadow: none !important;
+		&:hover {
+			color: #FFFFFF;
+			background: lighten($color__primary, 3%);
+		}
+		&:active {
+			color: #FFFFFF;
+			background: darken($color__primary, 7%);
+		}
+		&:focus {
+			background: $color__primary;
+		}
+		&:disabled,
+		&[disabled] {
+			background: $color__disabled;
+		}
+	}
+
+	&__video-wrapper,
+	&__video-wrapper video {
+		display: inline-block;
+		width: $video__width;
+		max-width: 100%;
+		height: $height_vidrack-video;
+	}
+
+	&__video-wrapper {
+		position: relative;
+		height: $height_vidrack-video + $height_recorder-controls + $height_copyright;
+		transition: all 600ms cubic-bezier(0.215, 0.61, 0.355, 1);
+
+		video {
+			//border: 1px solid;
+			border: none;
+			background: #1C2127 url("../../assets/img/vidrack_logo.png") center no-repeat;
+		}
+	}
+
+	$loader__color_1: #2c3038;
+	$loader__color_2: #252932;
+	&__loading {
+		width: 100%;
+		max-width: $video__width;
+		height: $height_recorder-controls;
+		overflow: hidden;
+		position: absolute;
+		top: 0;
+		left: 0;
+		box-sizing: border-box;
+		transition: .3s;
+		opacity: 0;
+
+		&_show {
+			opacity: 1;
+		}
+
+		&-bar {
+			right: 0;
+			position: absolute;
+			width: 800px;
+			height: 100%;
+			background: blue;
+			background-image: -webkit-linear-gradient(45deg, $loader__color_1 0%, $loader__color_1 30%, $loader__color_2 30%, $loader__color_2 70%, $loader__color_1 70%);
+			background-image: -webkit-moz-gradient(45deg, $loader__color_1 0%, $loader__color_1 30%, $loader__color_2 30%, $loader__color_2 70%, $loader__color_1 70%);
+			background-image: -webkit-o-gradient(45deg, $loader__color_1 0%, $loader__color_1 30%, $loader__color_2 30%, $loader__color_2 70%, $loader__color_1 70%);
+			background-image: linear-gradient(45deg, $loader__color_1 0%, $loader__color_1 30%, $loader__color_2 30%, $loader__color_2 70%, $loader__color_1 70%);
+			background-size: 160px 70px;
+
+			animation: slide 3s linear infinite;
+		}
+
+	}
+
+	&__recorder-controls {
+		background: #252932;
+		position: absolute;
+		width: 100%;
+		height: $height_recorder-controls;
+		left: 0;
+		bottom: $height_copyright;
+		display: flex;
+		transition: all 600ms cubic-bezier(0.215, 0.61, 0.355, 1);
+
+		button {
+			color: #FFF;
+			background-color: #cc0514;
+			box-shadow: inset #d63743 0 2px,
+						inset #99040f 0 -2px;
+			text-transform: uppercase;
+			border: none;
+			border-radius: 0;
+			font-weight: normal;
+			line-height: 1;
+			font-size: 20px;
+			font-style: normal;
+			transition: .3s;
+
+			&:hover {
+				background-color: #99040f;
+				box-shadow: inset #cc0514 0 2px,
+							inset #66030a 0 -2px;
+			}
+		}
+
+		.btn-recorder {
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			right: 0;
+			transition: all 600ms cubic-bezier(0.215, 0.61, 0.355, 1);
+			margin: 0 !important;
+
+			&_right {
+				width: 65%;
+			}
+
+			&[disabled],
+			&:disabled {
+				background: transparent;
+				box-shadow: none;
+				cursor: default;
+			}
+		}
+
+		.recorder-controls__timer {
+			width: 35%;
+			background-color: #252932;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			color: #FFF;
+			font-weight: normal;
+			font-size: 20px;
+			user-select: none;
+		}
+
+	}
+
+	&-copyright {
+		height: $height_copyright;
+		width: 100%;
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		background-color: #000;
+		text-align: center;
+		line-height: 1;
+		padding: 4px 0;
+		box-sizing: border-box;
+
+		a {
+			font-size: 12px;
+			font-style: normal;
+			color: #808080 !important;
+			transition: .3s;
+			user-select: none;
+
+			&:hover {
+				color: $color__primary !important;
+			}
+		}
+	}
+
+}
+@keyframes slide{
+	from {
+		right: 0;
+	}
+	to {
+		right: -160px;
+	}
+}
+
+.vidrack-uploader {
+	margin-bottom: 20px;
+	position: relative;
+
+	&__form {
+		margin-bottom: 0.5em;
+	}
+
+	&__file-selector {
+		display: none;
+	}
+
+	&__button {
+		color: $color__text_button;
+		background: none;
+		border: none;
+		font-size: 12px;
+		font-style: normal;
+		font-weight: 500;
+		user-select: none;
+		-webkit-box-shadow: none !important;
+				box-shadow: none !important;
+		&:hover {
+			color: $color__primary !important;
+			background: none;
+		}
+		&:active {
+			color: #A50303 !important;
+			background: none;
+		}
+		&:focus {
+			color: $color__text_button;
+			background: none;
+		}
+		&:disabled,
+		&[disabled] {
+			color: $color__disabled !important;
+
+			.vidrack-icon_upload {
+				opacity: 0.5;
+			}
+		}
+
+		.vidrack-icon_upload {
+			background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNNSA0djJoMTRWNEg1em0wIDEwaDR2Nmg2di02aDRsLTctNy03IDd6Ii8+PC9zdmc+);
+			display: inline-block;
+			height: 16px;
+			width: 16px;
+			background-size: contain;
+			vertical-align: sub;
+		}
+	}
+
+	&__progress {
+		position: relative;
+		background: #f3f3f3;
+	}
+
+	&__message {
+		padding-top: 10px;
+
+		& > div {
+			font-weight: 500;
+			font-size: 0.75rem;
+			border-radius: 3px;
+			padding: 0.5em 0.8em;
+			&.success {
+				background: #8fde76;
+			}
+			&.error {
+				background: #ffbcbc;
+			}
+		}
+	}
+
+	.vidrack__loading {
+		position: relative;
+		border-radius: 3px;
+		height: 0;
+		opacity: 1;
+
+		&_show {
+			height: 15px;
+		}
+
+		$loader__color_1: #19b519;
+		$loader__color_2: #252932;
+
+		&-bar {
+			animation: none;
+			width: 100%;
+			right: inherit;
+			left: -100%;
+
+			background-image: -webkit-linear-gradient(45deg, $loader__color_1 0%, $loader__color_1 30%, $loader__color_2 30%, $loader__color_2 70%, $loader__color_1 70%);
+			background-image: -webkit-moz-gradient(45deg, $loader__color_1 0%, $loader__color_1 30%, $loader__color_2 30%, $loader__color_2 70%, $loader__color_1 70%);
+			background-image: -webkit-o-gradient(45deg, $loader__color_1 0%, $loader__color_1 30%, $loader__color_2 30%, $loader__color_2 70%, $loader__color_1 70%);
+			background-image: linear-gradient(45deg, $loader__color_1 0%, $loader__color_1 30%, $loader__color_2 30%, $loader__color_2 70%, $loader__color_1 70%);
+			background-size: 30px 15px;
+			border-radius: 3px;
+		}
+	}
+
+	.vidrack__loading-percent {
+		display: none;
+		position: absolute;
+		left: 100%;
+		top: 0;
+		font-size: 12px;
+		line-height: 15px;
+		padding-left: 3px;
+		&_show {
+			display: block;
+		}
+	}
+
+}
+
+.vidrack-el-hide {
+	display: none !important;
+}
+
+.vidrack-collect-data {
+	width: 250px; // Legacy
+	display: inline-block;
+	margin-bottom: 20px;
+
+	&__group {
+		margin-bottom: 20px;
+
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+
+	input[type="text"],
+	input[type="email"],
+	input[type="number"],
+	input[type="tel"],
+	input[type="date"],
+	textarea,
+	select {
+		border: 2px solid #e8e8e8;
+		transition: 0.3s;
+
+		&:valid:not(:placeholder-shown) {
+			border: 2px solid #19b519;
+		}
+		&:invalid:not(:placeholder-shown) {
+			border: 2px solid #d10000;
+		}
+
+		&.vidrack-item_invalid {
+			border: 2px solid #d10000;
+		}
+
+	}
+
+	textarea {
+		resize: vertical;
+	}
+
+}
+
+/**
+ * Vidrack Player VideoJs
+ */
+.vidrack-player {
+	&, & video {
+		display: inline-block;
+		width: $video__width;
+		max-width: 100%;
+		height: $height_vidrack-video;
+	}
+
+	.vjs-poster {
+		background-size: contain;
+		background-color: #1c2127;
+	}
+}

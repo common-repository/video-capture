@@ -1,0 +1,218 @@
+@import "../../libs/css/video-js";
+
+.vidrack-admin-footer-text {
+	margin: 0;
+	display: inline-block;
+
+	& > li {
+		display: inline-block;
+		margin: 0;
+		margin-left: 1em;
+		&:first-child {
+			margin-left: 0;
+		}
+	}
+
+	&__link_pro {
+		font-weight: bold;
+		color: darkgreen;
+	}
+}
+
+/**
+ * Share btns
+ */
+.vidrack-share {
+
+	a {
+		display: inline-block;
+		width: 24px;
+		height: 24px;
+		vertical-align: middle;
+
+		&:hover svg {
+			transition: .3s;
+		}
+	}
+
+	svg {
+		max-width: 100%;
+		max-height: 100%;
+	}
+
+	&__fb {
+		svg {
+			fill: #4267b2;
+		}
+		&:active svg,
+		&:focus svg,
+		&:hover svg {
+			fill: #365899;
+		}
+	}
+	&__tw {
+		svg {
+			fill: #1b95e0;
+		}
+		&:active svg,
+		&:focus svg,
+		&:hover svg {
+			fill: #0c7abf;
+		}
+	}
+	&__g {
+		svg {
+			fill: #DB4437;
+		}
+		&:active svg,
+		&:focus svg,
+		&:hover svg {
+			fill: #bb372c;
+		}
+	}
+}
+
+/**
+ * Rating
+ */
+.jq-stars {
+	display: inline-block;
+}
+
+.jq-rating-label {
+	font-size: 22px;
+	display: inline-block;
+	position: relative;
+	vertical-align: top;
+}
+
+.jq-star {
+	width: 100px;
+	height: 100px;
+	display: inline-block;
+	cursor: pointer;
+
+	&-svg {
+		width: 100%;
+		height: 100%;
+
+		path {
+			/* stroke: #000; */
+			stroke-linejoin: round;
+		}
+	}
+}
+
+/**
+ * Magnific Popup
+ */
+.mfp-bg {
+	z-index: 999998;
+}
+.mfp-wrap {
+	z-index: 999999;
+}
+.mfp-close-btn-in .mfp-close {
+	color: #fff;
+	width: 33px;
+	height: 33px;
+	line-height: 33px;
+	background: rgba(0, 0, 0, 0.5);
+	left: 100%;
+	top: auto;
+	bottom: calc(100% - 33px);
+}
+.vidrack-admin-mfp {
+	background-color: #FFF;
+	width: 100%;
+	min-height: 160px;
+	margin: 0 auto;
+
+
+	// Dialog
+	&_dialog {
+		max-width: 500px;
+		padding: 20px;
+		text-align: center;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+	}
+
+	&_title {
+		font-weight: bold;
+		font-size: 20px;
+		line-height: 1.5;
+	}
+	&_message {
+		font-size: 18px;
+		line-height: 1.5;
+		margin-top: 15px;
+	}
+
+	// Player
+	$video__width: 640px;
+	$height_vidrack-video: 480px;
+	&_player {
+		display: block;
+		width: $video__width;
+		max-width: 100%;
+		height: $height_vidrack-video;
+		position: relative;
+
+		.vidrack-player {
+			width: 100%;
+			height: 100%;
+		}
+	}
+}
+
+/**
+ * Vidrack Admin Dashboard List
+ */
+.vidrack-list-table {
+
+	&__thumb {
+		height: auto;
+		width: 130px;
+		max-width: 100%;
+		object-fit: cover;
+		border-radius: 3px;
+	}
+
+	&__title {
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		font-weight: 600;
+	}
+	.level-0:hover &__title {
+		white-space: normal;
+	}
+
+}
+
+/**
+ * Fix Vidrack Setting table
+ */
+.postbox {
+	table.form-table {
+		clear: none !important;
+	}
+	dt {
+		font-weight: bold;
+	}
+}
+
+/*
+ * Ad Vidrack PRO
+ */
+.vidrack_pro_ad {
+	a {
+		display: block;
+	}
+	img {
+		display: block;
+		max-width: 100%;
+	}
+}

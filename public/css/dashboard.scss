@@ -1,0 +1,82 @@
+@import "../../admin/css/vidrack-admin";
+
+.vidrack-dashboard {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+	margin-bottom: -25px;
+
+	@media (min-width: 576px) {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		margin-left: -25px;
+	}
+
+	&__item {
+		margin-bottom: 25px;
+
+		@media (min-width: 576px) {
+			flex-basis: calc(50% - 25px);
+			max-width: calc(50% - 25px);
+			margin-left: 25px;
+		}
+		@media (min-width: 992px) {
+			flex-basis: calc(33.333% - 25px);
+			max-width: calc(33.333% - 25px);
+			margin-left: 25px;
+		}
+	}
+
+	&__thumbnail {
+		display: block;
+		margin-bottom: 7px;
+		position: relative;
+
+		&:hover:before {
+			content: '';
+			display: block;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			width: 60px;
+			height: 60px;
+			background: rgba(0, 0, 0, 0.4) url(../../assets/img/ico-play.svg) center no-repeat;
+			background-size: 25px;
+			border-radius: 50%;
+			transform: translate(-50%, -50%);
+		}
+
+		img {
+			width: 100%;
+			display: block;
+			border-radius: 3px;
+
+			@media (min-width: 576px) {
+				height: 160px;
+				object-fit: cover;
+			}
+			@media (min-width: 768px) {
+				height: 190px;
+			}
+			@media (min-width: 992px) {
+				height: 128px;
+			}
+		}
+	}
+
+	&__actions {
+		padding: 0;
+		margin: 0;
+		list-style: none;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+	}
+}
+
+.vidrack-actions {
+	&__item {
+		display: inline-block;
+	}
+}
